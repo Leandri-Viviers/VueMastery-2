@@ -1,2 +1,2 @@
 # VueMastery-2
-VueMastery tutorial application for Vue.js 2
+VueMastery tutorial application with Vue 2
