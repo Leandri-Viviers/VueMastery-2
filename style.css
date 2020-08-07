@@ -1,0 +1,55 @@
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+html {
+  font-size: 12px;
+  background-color: #FBD2D7;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+}
+
+div#app {
+  display: flex;
+  flex: 1 1 0;
+}
+
+div.nav-bar {
+  height: 120px;
+  background-color: #FFFFFF;
+}
+
+/* Fonts */
+.heading {
+  font-family: 'Petit Formal Script', cursive;
+  font-size: 3rem;
+}
+
+/* Products */
+div.product {
+  display: flex;
+  flex: 1 1 0;
+}
+
+div.product > div {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+}
+
+div.product-image {
+  justify-content: center;
+}
+
+div.product-info {
+  justify-content: start;
+}
+
+div.product-info > div {
+  width: 70%;
+}
