@@ -5,8 +5,9 @@ html, body {
 }
 
 html {
-  font-size: 12px;
-  background-color: #FBD2D7;
+  font-size: 12pt;
+  background: linear-gradient(120deg, #B8D8BA 40%, #FBD2D7 40%);
+  color: #04151F;
 }
 
 body {
@@ -31,25 +32,15 @@ div.nav-bar {
 }
 
 /* Products */
-div.product {
-  display: flex;
-  flex: 1 1 0;
+.product-info {
+  width: 60%;
 }
 
-div.product > div {
-  flex: 1 1 0;
-  display: flex;
-  align-items: center;
-}
-
-div.product-image {
-  justify-content: center;
-}
-
-div.product-info {
-  justify-content: start;
-}
-
-div.product-info > div {
-  width: 70%;
+.badge {
+  display: inline;
+  margin: 0;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #04151F;
+  color: #FFFFFF;
 }

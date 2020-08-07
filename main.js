@@ -3,6 +3,7 @@ var app = new Vue({
     data: {
         product: 'Jadon smooth leather platform boots',
         description: 'To keep your toes warm',
-        image: './assets/black.png'
+        image: './assets/black.png',
+        inventory: 8,
     }
 })
