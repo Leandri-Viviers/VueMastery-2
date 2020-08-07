@@ -16,7 +16,7 @@
         </div>
         <div class="flex-1 flex-column align-start justify-center">
           <div class="product-info">
-            <p class="flex-0 badge"> On sale </p>
+            <p v-show="onSale" class="flex-0 badge"> On sale </p>
             <h1 class="heading"> {{product}} </h1>
             <p v-if="inventory > 10"> In stock </p>
             <p v-else-if="inventory <= 10 && inventory > 0"> Almost sold out! </p>

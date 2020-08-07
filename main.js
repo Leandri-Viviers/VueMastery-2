@@ -5,5 +5,6 @@ var app = new Vue({
         description: 'To keep your toes warm',
         image: './assets/black.png',
         inventory: 8,
+        onSale: false,
     }
 })
