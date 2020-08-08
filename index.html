@@ -27,16 +27,16 @@
             <!-- Variants -->
             <div class="flex-row">
               <span
-                v-for="variant in variants"
+                v-for="(variant, index) in variants"
                 :key="variant.id"
-                @mouseover="updateProduct(variant.image)"
+                @mouseover="updateProduct(index)"
                 class="color-box"
                 :style="{backgroundColor: variant.color}"
               ></span>
             </div>
             <!-- Availability -->
-            <h4 class="accent" :class="{'strike-through' : inventory == 0}">
-              <span v-if="inventory > 0"> IN STOCK </span>
+            <h4 class="accent" :class="{'strike-through' : !inStock}">
+              <span v-if="inStock"> IN STOCK </span>
               <span v-else> OUT OF STOCK </span>
             </h4>
             <p> {{description}} </p>
@@ -55,9 +55,9 @@
             <!-- Add to cart -->
             <button
               @click="addToCart"
-              :disabled="inventory == 0"
+              :disabled="!inStock"
               class="add-to-cart"
-              :class="{disabled : inventory == 0}"
+              :class="{'disabled' : !inStock}"
             > Add to cart </button>
           </div>
         </div>
