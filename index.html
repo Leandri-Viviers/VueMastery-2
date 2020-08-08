@@ -9,59 +9,7 @@
   </head>
   <body>
     <div id="app" class="flex-column flex-1">
-      <div class="nav-bar flex-row align-center justify-end">
-        <p class="cart"> Cart ({{cart}}) </p>
-      </div>
-      <div class="flex-1 flex-row">
-        <div class="flex-1 flex-row align-center justify-center">
-          <img :src="image"/>
-        </div>
-        <div class="flex-1 flex-column align-start justify-center">
-          <div class="product-info">
-            <!-- Sale -->
-            <div class="text-right">
-              <p v-show="onSale" class="flex-0 badge"> On sale </p>
-            </div>
-            <!-- Heading -->
-            <h1 class="heading"> {{product}} </h1>
-            <!-- Variants -->
-            <div class="flex-row">
-              <span
-                v-for="(variant, index) in variants"
-                :key="variant.id"
-                @mouseover="updateProduct(index)"
-                class="color-box"
-                :style="{backgroundColor: variant.color}"
-              ></span>
-            </div>
-            <!-- Availability -->
-            <h4 class="accent" :class="{'strike-through' : !inStock}">
-              <span v-if="inStock"> IN STOCK </span>
-              <span v-else> OUT OF STOCK </span>
-            </h4>
-            <p> {{description}} </p>
-            <!-- Details -->
-            <ul class="details">
-              <li v-for="detail in details">
-                {{detail}}
-              </li>
-            </ul>
-            <!-- Sizes -->
-            <ul class="sizes">
-              <li v-for="size in sizes">
-                {{size}}
-              </li>
-            </ul>
-            <!-- Add to cart -->
-            <button
-              @click="addToCart"
-              :disabled="!inStock"
-              class="add-to-cart"
-              :class="{'disabled' : !inStock}"
-            > Add to cart </button>
-          </div>
-        </div>
-      </div>
+      <product :premium="premium"></product>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="main.js"></script>
