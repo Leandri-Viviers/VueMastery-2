@@ -9,7 +9,10 @@
   </head>
   <body>
     <div id="app" class="flex-column flex-1">
-      <product :premium="premium"></product>
+      <div class="nav-bar flex-row align-center justify-end">
+        <p> Cart ({{cart.length}}) </p>
+      </div>
+      <product :premium="premium" @add-to-cart="updateCart"></product>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="main.js"></script>

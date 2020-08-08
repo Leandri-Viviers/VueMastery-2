@@ -1,9 +1,6 @@
 Vue.component('product', {
   template: `
     <div class="flex-column flex-1">
-      <div class="nav-bar flex-row align-center justify-end">
-        <p> Cart ({{cart}}) </p>
-      </div>
       <div class="flex-1 flex-row">
         <div class="flex-1 flex-row align-center justify-center">
           <img :src="image"/>
@@ -84,12 +81,11 @@ Vue.component('product', {
           quantity: 0,
         }
       ],
-      cart: 0
     }
   },
   methods: {
     addToCart: function(){
-      this.cart += 1
+      this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
     },
     updateProduct: function(index){
       this.selectedVariant = index
@@ -130,6 +126,12 @@ Vue.component('product-details', {
 var app = new Vue({
   el: '#app',
   data: {
-    premium: true
+    premium: true,
+    cart: []
+  },
+  methods: {
+    updateCart(id){
+      this.cart.push(id)
+    }
   }
 })
