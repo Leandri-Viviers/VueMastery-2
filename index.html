@@ -1,38 +1,53 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale">
+    <meta name="viewport" content="width=device-width">
     <title> Vue Mastery </title>
     <link rel="stylesheet" type="text/css" href="flex.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&family=Petit+Formal+Script&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div class="nav-bar"></div>
-    <div id="app">
+    <div id="app" class="flex-column flex-1">
+      <div class="nav-bar flex-row align-center justify-end">
+        <p class="cart"> Cart ({{cart}}) </p>
+      </div>
       <div class="flex-1 flex-row">
         <div class="flex-1 flex-row align-center justify-center">
           <img :src="image"/>
         </div>
         <div class="flex-1 flex-column align-start justify-center">
           <div class="product-info">
+            <!-- Sale -->
             <div class="text-right">
               <p v-show="onSale" class="flex-0 badge"> On sale </p>
             </div>
+            <!-- Heading -->
             <h1 class="heading"> {{product}} </h1>
-            <h4 v-if="inventory > 0"> IN STOCK </h4>
-            <h5 v-else> SOLD OUT </h5>
+            <!-- Variants -->
+            <div class="flex-row">
+              <span v-for="variant in variants" @mouseover="updateProduct(variant.image)">
+                {{variant.color}}
+              </span>
+            </div>
+            <!-- Availability -->
+            <h4 class="accent" v-if="inventory > 0"> IN STOCK </h4>
+            <h4 class="accent" v-else> SOLD OUT </h4>
             <p> {{description}} </p>
+            <!-- Details -->
             <ul class="details">
               <li v-for="detail in details">
                 {{detail}}
               </li>
             </ul>
+            <!-- Sizes -->
             <ul class="sizes">
               <li v-for="size in sizes">
                 {{size}}
               </li>
             </ul>
+            <!-- Add to cart -->
+            <button @click="addToCart" class="add-to-cart"> Add to cart </button>
           </div>
         </div>
       </div>
