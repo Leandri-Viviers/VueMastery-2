@@ -4,7 +4,7 @@ var app = new Vue({
     product: 'Jadon smooth leather platform boots',
     description: 'A fierce evolution of the 8-eye boot, the Jadon retains all its original details - grooved edges, yellow stitching and a heel-loop - and adds a chunky, empowering platform sole.',
     image: './assets/black.png',
-    inventory: 8,
+    inventory: 0,
     onSale: true,
     details: [
       'Inner ankle zip',
