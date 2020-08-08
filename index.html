@@ -5,7 +5,7 @@
     <title> Vue Mastery </title>
     <link rel="stylesheet" type="text/css" href="flex.css">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Petit+Formal+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&family=Petit+Formal+Script&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="nav-bar"></div>
@@ -16,11 +16,23 @@
         </div>
         <div class="flex-1 flex-column align-start justify-center">
           <div class="product-info">
-            <p v-show="onSale" class="flex-0 badge"> On sale </p>
+            <div class="text-right">
+              <p v-show="onSale" class="flex-0 badge"> On sale </p>
+            </div>
             <h1 class="heading"> {{product}} </h1>
-            <p v-if="inventory > 10"> In stock </p>
-            <p v-else-if="inventory <= 10 && inventory > 0"> Almost sold out! </p>
-            <p v-else> Out of stock </p>
+            <h4 v-if="inventory > 0"> IN STOCK </h4>
+            <h5 v-else> SOLD OUT </h5>
+            <p> {{description}} </p>
+            <ul class="details">
+              <li v-for="detail in details">
+                {{detail}}
+              </li>
+            </ul>
+            <ul class="sizes">
+              <li v-for="size in sizes">
+                {{size}}
+              </li>
+            </ul>
           </div>
         </div>
       </div>
