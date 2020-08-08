@@ -12,10 +12,27 @@ var app = new Vue({
       'Built on the durable, comfortable Dr. Martens air-cushioned sole, that\'s oil and fat resistant with good abrasion and slip resistance',
       'Platform height: 1 3/4"'
     ],
-    sizes: [5,6,7,8,9,10,11,12],
+    sizes: [5, 6, 7, 8, 9, 10, 11, 12],
     variants: [
-      {id: 15265001, color: 'black'},
-      {id: 15265100, color: 'white'}
-    ]
+      {
+        id: 15265001,
+        color: 'black',
+        image: './assets/black.png',
+      },
+      {
+        id: 15265100,
+        color: 'white',
+        image: './assets/white.png',
+      }
+    ],
+    cart: 0
+  },
+  methods: {
+    addToCart: function(){
+      this.cart += 1
+    },
+    updateProduct: function(variantImage){
+      this.image = variantImage
+    }
   }
 })
