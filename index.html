@@ -26,13 +26,19 @@
             <h1 class="heading"> {{product}} </h1>
             <!-- Variants -->
             <div class="flex-row">
-              <span v-for="variant in variants" @mouseover="updateProduct(variant.image)">
-                {{variant.color}}
-              </span>
+              <span
+                v-for="variant in variants"
+                :key="variant.id"
+                @mouseover="updateProduct(variant.image)"
+                class="color-box"
+                :style="{backgroundColor: variant.color}"
+              ></span>
             </div>
             <!-- Availability -->
-            <h4 class="accent" v-if="inventory > 0"> IN STOCK </h4>
-            <h4 class="accent" v-else> SOLD OUT </h4>
+            <h4 class="accent" :class="{'strike-through' : inventory == 0}">
+              <span v-if="inventory > 0"> IN STOCK </span>
+              <span v-else> OUT OF STOCK </span>
+            </h4>
             <p> {{description}} </p>
             <!-- Details -->
             <ul class="details">
@@ -47,7 +53,12 @@
               </li>
             </ul>
             <!-- Add to cart -->
-            <button @click="addToCart" class="add-to-cart"> Add to cart </button>
+            <button
+              @click="addToCart"
+              :disabled="inventory == 0"
+              class="add-to-cart"
+              :class="{disabled : inventory == 0}"
+            > Add to cart </button>
           </div>
         </div>
       </div>

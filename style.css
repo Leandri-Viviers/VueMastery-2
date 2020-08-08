@@ -33,7 +33,7 @@ p.cart {
 .heading {
   font-family: 'Petit Formal Script', cursive;
   font-size: 2.5rem;
-  margin: 2rem 0;
+  margin: 2rem 0 1.2rem;
 }
 
 .text-right {
@@ -52,6 +52,18 @@ p.cart {
   border-radius: 4px;
   background-color: #CF4D6F;
   color: #FFFFFF;
+}
+
+.color-box {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 1.2rem;
+  margin-right: 0.8rem;
+}
+
+.strike-through {
+  color: #EEEEEE;
+  text-decoration: line-through;
 }
 
 ul.details {
@@ -84,14 +96,25 @@ ul.sizes > li:hover {
 }
 
 /* Buttons */
-button.add-to-cart {
+button {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.87rem;
   border: 0;
   border-radius: 4px;
-  width: 40%;
   margin: 1rem 0;
   padding: 1rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.add-to-cart {
+  width: 40%;
   background: #04151F;
   color: #FFFFFF;
+}
+
+button.disabled {
+  background-color: #EEEEEE;
+  color: #BDBDBD;
+  cursor: default;
 }
