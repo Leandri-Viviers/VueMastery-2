@@ -10,7 +10,9 @@
   <body>
     <div id="app" class="flex-column flex-1">
       <div class="nav-bar flex-row align-center justify-end">
-        <p> Cart ({{cart.length}}) </p>
+        <div class="mx-4">
+          <p> Cart ({{cart.length}}) </p>
+        </div>
       </div>
       <product :premium="premium" @add-to-cart="updateCart"></product>
     </div>
