@@ -1,3 +1,5 @@
+var eventBus = new Vue()
+
 Vue.component('product', {
   template: `
     <div class="content">
@@ -62,23 +64,7 @@ Vue.component('product', {
           </div>
         </div>
       </div>
-      <div class="review">
-        <div class="flex-1 flex-column align-center">
-          <div class="product-reviews">
-            <h4> Reviews </h4>
-            <p v-show="reviews.length == 0"> There are no reviews yet. </p>
-            <div v-for="review in reviews">
-              <div class="flex-row align-center justify-space-between review-text">
-                <p> {{review.name}} </p>
-                <p> {{review.rating}} &#128970; </p>
-              </div>
-              <p class="caption">{{review.review}}</p>
-              <p class="divider"></p>
-            </div>
-          </div>
-        </div>
-        <product-review @review-submitted="addReview"></product-review>
-      </div>
+      <product-tabs :reviews="reviews"></product-tabs>
     </div>
   `,
   props: {
@@ -86,6 +72,11 @@ Vue.component('product', {
       type: Boolean,
       required: true,
     }
+  },
+  mounted(){
+    eventBus.$on('review-submitted', productReview => {
+      this.reviews.push(productReview)
+    })
   },
   data(){
     return {
@@ -100,7 +91,7 @@ Vue.component('product', {
       ],
       sizes: [5, 6, 7, 8, 9, 10, 11, 12],
       selectedSize: null,
-      selectedVariant: 0,
+      selectedVariant: 1,
       variants: [
         {
           id: 15265001,
@@ -133,9 +124,6 @@ Vue.component('product', {
     updateProduct(index){
       this.selectedVariant = index
     },
-    addReview(productReview){
-      this.reviews.push(productReview)
-    },
   },
   computed: {
     image(){
@@ -151,6 +139,61 @@ Vue.component('product', {
       return 3405.20
     }
   }
+})
+
+Vue.component('product-tabs', {
+  template: `
+    <div>
+      <div class="flex-row">
+        <span
+          class="tab"
+          :class="{activeTab: selectedTab == tab}"
+          v-for="(tab, index) in tabs"
+          :key="index"
+          @click="selectedTab = tab"
+        >
+          {{tab}}
+        </span>
+      </div>
+      <div class="review">
+        <div v-show="selectedTab == 'Reviews'" class="flex-1 flex-column">
+          <div class="product-reviews">
+            <h3> Reviews </h3>
+            <p v-show="reviews.length == 0"> There are no reviews yet. </p>
+            <div v-for="review in reviews">
+              <div class="flex-row align-center justify-space-between review-text">
+                <p> {{review.name}} </p>
+                <p> {{review.rating}} &#128970; </p>
+              </div>
+              <p class="caption">{{review.review}}</p>
+              <p class="divider"></p>
+            </div>
+          </div>
+        </div>
+        <product-review v-show="selectedTab == 'Write a review'"></product-review>
+        <div class="flex-1 flex-column">
+          <div class="product-shipping">
+            <h3> Shipping </h3>
+            <p> Free Ground Shipping on orders over $50. <a>Click here</a> for more detailed shipping information!</p>
+            <h3> Returns </h3>
+            <p> Try on your Doc's and make sure they fit, that they’re the correct size, and/or style. If not, you can return them up to 30 days from your order date. By downloading and using our return label, we will deduct $7 from your refund. If you’d like a different size or another style, please place a new order and we’ll credit your account once we receive your return. For tracking purposes we are unable to accommodate exchanges. Dr. Martens retail stores are unable to accept returns or exchanges at this time. Click here for more return instructions!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+  props: {
+    reviews: {
+      type: Array,
+      required: true
+    }
+  },
+  data(){
+    return {
+      tabs: ['Reviews', 'Write a review'],
+      selectedTab: 'Reviews',
+    }
+  },
 })
 
 Vue.component('product-details', {
@@ -172,7 +215,7 @@ Vue.component('product-details', {
 Vue.component('product-review', {
   template: `
       <div class="flex-1">
-        <h4> Write your review </h4>
+        <h3> Write your review </h3>
         <form @submit.prevent="onSubmit">
           <div class="flex-row">
             <div class="flex-1 flex-column">
@@ -223,7 +266,7 @@ Vue.component('product-review', {
           review: this.review
         }
         this.clearForm()
-        this.$emit('review-submitted', productReview)
+        eventBus.$emit('review-submitted', productReview)
         return
       }
       this.validate()
