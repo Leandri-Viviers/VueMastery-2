@@ -1,3 +1,14 @@
+:root {
+  --primary: #FBD2D7;
+  --secondary: #505168;
+  --warning: #F55D3E;
+  --background: #27233A;
+  --accent: #E7E247;
+
+  --sans: 'Montserrat', sans-serif;
+  --serif: 'Quattrocento Sans', sans-serif;
+}
+
 html, body {
   display: flex;
   flex-direction: column;
@@ -5,7 +16,7 @@ html, body {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--sans);
   margin: 0;
 }
 
@@ -14,7 +25,7 @@ div.nav-bar {
   width: 100%;
   height: 60px;
   background-color: #FFFFFF;
-  color: #ADB6C4;
+  color: var(--secondary);
   -webkit-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   -moz-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
@@ -32,8 +43,8 @@ div.nav-bar {
   flex-direction: row;
   flex: 1 1 0;
   padding: 4rem 0;
-  background: linear-gradient(120deg, #ADB6C4 30%, #FBD2D7 30%);
-  color: #04151F;
+  background: linear-gradient(120deg, var(--accent) 30%, var(--primary) 30%);
+  color: var(--background);
 }
 
 .review {
@@ -41,8 +52,8 @@ div.nav-bar {
   flex-direction: row;
   flex: 1 1 0;
   padding: 4rem 0;
-  background: #04151F;
-  color: #7A5C61;
+  background: var(--background);
+  color: var(--secondary);
 }
 
 .product-reviews {
@@ -52,35 +63,19 @@ div.nav-bar {
 .review-text p {
   margin-top: 0;
   margin-bottom: 0;
-  color: #ADB6C4;
+  color: var(--accent);
   font-size: 0.76rem;
 }
 
 /* Colors */
-.primary {
-  color: #FBD2D7;
-}
-
-.secondary {
-  color: #04151F;
-}
-
-.accent {
-  color: #7A5C61;
-}
-
-.warn {
-  color: #F55D3E;
-}
-
-.info {
-  color: #ADB6C4;
+.secondary--text {
+  color: var(--secondary);
 }
 
 /* Fonts */
 .heading {
-  font-family: 'Petit Formal Script', cursive;
-  font-size: 2.5rem;
+  font-family: var(--serif);
+  font-size: 3rem;
   margin: 2rem 0 1.2rem;
 }
 
@@ -107,7 +102,7 @@ div.nav-bar {
   text-align: center;
   margin: 0;
   border-radius: 4rem;
-  background-color: #F55D3E;
+  background-color: var(--secondary);
   color: #FFFFFF;
   font-size: 0.87rem;
 }
@@ -120,7 +115,6 @@ div.nav-bar {
 }
 
 .strike-through {
-  color: #76818E;
   text-decoration: line-through;
 }
 
@@ -129,29 +123,36 @@ ul.details {
   margin: 2rem 0;
 }
 
-ul.sizes {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+/* Sizes */
+.sizes > label:first-child {
+  margin-left: 0;
 }
 
-/* Sizes */
-ul.sizes > li {
+.sizes {
+  margin-bottom: 1rem;
+}
+
+label.radio {
   display: inline-block;
   width: 10%;
-  margin: 4px;
+  margin: 0 4px;
   padding: 12px 0;
   background-color: rgba(255, 255, 255, 0.4);
   text-align: center;
   transition: 0.4s;
+  cursor: pointer;
 }
 
-ul.sizes > li:first-child {
-  margin-left: 0;
-}
-
-ul.sizes > li:hover {
+label.radio:hover,
+label.radio.selected
+{
   background-color: rgba(255, 255, 255, 1);
+}
+
+[type=radio] {
+  position:absolute;
+  clip: rect(0,0,0,0);
+  clip: rect(0 0 0 0);
 }
 
 /* Buttons */
@@ -161,21 +162,21 @@ button, input[type=submit]
   font-size: 0.87rem;
   border: 0;
   border-radius: 4px;
-  margin: 2rem 0;
   padding: 1rem;
   outline: none;
   cursor: pointer;
 }
 
 input[type=submit] {
-  background-color: #76818E;
-  color: #FFFFFF;
+  background-color: var(--accent);
+  color: var(--background);
   width: 30%;
 }
 
 .add-to-cart {
+  margin-top: 1rem;
   width: 40%;
-  background: #04151F;
+  background: var(--background);
   color: #FFFFFF;
 }
 
@@ -190,32 +191,32 @@ form {
   width: 60%;
 }
 
-label {
+label:not(.radio) {
   font-size: 0.76rem;
   transition: 0.2s;
-  color: #76818E;
+  color: var(--accent);
 }
 
 span.error-message {
   font-size: 0.76rem;
-  color: #F55D3E;
+  color: var(--warning);
 }
 
 .input-error {
-  border-color: #F55D3E !important;
+  border-color: var(--warning) !important;
 }
 
 input:not([type=submit]), textarea, select {
   display: block;
   padding: 0.87rem 1rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--sans);
   font-size: 0.87rem;
   margin: 4px 0;
-  border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 4px;
   outline: none;
-  background-color: rgba(255, 255, 255, 0.9);
   transition: 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 select {

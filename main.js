@@ -24,25 +24,41 @@ Vue.component('product', {
               ></span>
             </div>
             <!-- Availability -->
-            <h4 class="accent" :class="{'strike-through' : !inStock}">
+            <h4 class="secondary--text" :class="{'strike-through' : !inStock}">
               <span v-if="inStock"> IN STOCK </span>
               <span v-else> OUT OF STOCK </span>
             </h4>
             <p> {{description}} </p>
             <product-details :details="details"></product-details>
             <!-- Sizes -->
-            <ul class="sizes">
-              <li v-for="size in sizes">
+            <div class="sizes">
+              <label
+                v-for="size in sizes"
+                :key="size"
+                class="radio"
+                :class="{'selected': selectedSize == size}"  
+              >
+                <input
+                  type="radio"
+                  name="size"
+                  :value="size"
+                  v-model="selectedSize"
+                >
                 {{size}}
-              </li>
-            </ul>
+              </label>
+            </div>
+            <div>
+              <span class="error-message"> {{error}} </span>
+            </div>
             <!-- Add to cart -->
             <button
               @click="addToCart"
               :disabled="!inStock"
               class="add-to-cart"
               :class="{'disabled' : !inStock}"
-            > Add to cart ({{price}} ZAR) </button>
+            >
+              Add to cart ({{price}} ZAR)
+            </button>
           </div>
         </div>
       </div>
@@ -83,7 +99,7 @@ Vue.component('product', {
         'Platform height: 1 3/4"'
       ],
       sizes: [5, 6, 7, 8, 9, 10, 11, 12],
-      selectedSize: 5,
+      selectedSize: null,
       selectedVariant: 0,
       variants: [
         {
@@ -103,10 +119,15 @@ Vue.component('product', {
         {name:'Sara', rating:5, review:'I love the height it gives me and how stylish and edgy they are.'},
         {name:'Rachel', rating:4, review:'Love the look and style.'},
       ],
+      error: ''
     }
   },
   methods: {
     addToCart(){
+      this.error = null
+      if(!this.selectedSize){
+        return this.error = 'Please choose a size'
+      }
       this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
     },
     updateProduct(index){
@@ -114,7 +135,7 @@ Vue.component('product', {
     },
     addReview(productReview){
       this.reviews.push(productReview)
-    }
+    },
   },
   computed: {
     image(){
@@ -172,7 +193,7 @@ Vue.component('product-review', {
             <label for="review">Review:</label>
               <span class="error-message order-2"> {{errors.review}} </span>
           </div>
-          <div>
+          <div class="mt-1">
             <input type="submit" value="Submit review"/>
           </div>
         </form>
