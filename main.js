@@ -176,7 +176,7 @@ Vue.component('product-tabs', {
             <h3> Shipping </h3>
             <p> Free Ground Shipping on orders over $50. <a>Click here</a> for more detailed shipping information!</p>
             <h3> Returns </h3>
-            <p> Try on your Doc's and make sure they fit, that they’re the correct size, and/or style. If not, you can return them up to 30 days from your order date. By downloading and using our return label, we will deduct $7 from your refund. If you’d like a different size or another style, please place a new order and we’ll credit your account once we receive your return. For tracking purposes we are unable to accommodate exchanges. Dr. Martens retail stores are unable to accept returns or exchanges at this time. Click here for more return instructions!</p>
+            <p> Try on your Doc&apos;s and make sure they fit, that they&apos;re the correct size, and/or style. If not, you can return them up to 30 days from your order date. By downloading and using our return label, we will deduct $7 from your refund. If you&apos;d like a different size or another style, please place a new order and we&apos;ll credit your account once we receive your return. For tracking purposes we are unable to accommodate exchanges. Dr. Martens retail stores are unable to accept returns or exchanges at this time. Click here for more return instructions!</p>
           </div>
         </div>
       </div>
